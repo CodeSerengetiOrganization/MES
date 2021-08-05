@@ -9,18 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>process-control</artifactId>
-    <!-- 这一部分必须手工添加-->
-    <modules>
-        <module>../manufacturing-status</module>
-    </modules>
-    <dependencies>
-        <dependency>
-            <groupId>com.mytech</groupId>
-            <artifactId>manufacturing-status</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+    <artifactId>manufacturing-status</artifactId>
+
 
 </project>
