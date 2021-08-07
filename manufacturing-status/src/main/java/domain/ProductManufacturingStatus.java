@@ -1,4 +1,3 @@
-
 package domain;
 
 import lombok.Builder;
@@ -18,7 +17,6 @@ import java.time.LocalDateTime;
 @Table(name="t_product_manufacturing_status")
 @Data
 @Builder
-@Deprecated
 public class ProductManufacturingStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

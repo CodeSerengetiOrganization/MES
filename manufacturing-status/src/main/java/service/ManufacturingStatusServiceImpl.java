@@ -1,10 +1,12 @@
 package service;
 
-import com.mytech.domain.ProductManufacturingStatus;
+
 import com.mytech.repository.ManufacturingStatusRepository;
-import com.mytech.statemachine.ProcessEventEnum;
-import com.mytech.statemachine.ProcessStateEnum;
+
 import com.mytech.statemachine.ProcessStateMachineBuilder;
+import domain.ProcessEventEnum;
+import domain.ProcessStateEnum;
+import domain.ProductManufacturingStatus;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -14,6 +16,7 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.statemachine.StateMachine;
 import org.springframework.statemachine.persist.StateMachinePersister;
 import org.springframework.stereotype.Service;
+import repository.ManufacturingStatusRepository;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
@@ -99,7 +102,7 @@ public class ManufacturingStatusServiceImpl implements ManufacturingStatusServic
      *restore a state machine from database via barcode, then use this restored state machine send new event
      * In this version, the ProcessEventEnum is carried by a Message object
      * @param message contains a ProcessEventEnum object as payload, and a String as header with key "barcode"
-     * @see com.mytech.statemachine.ProcessEventEnum
+     * @see domain.ProcessStateEnum;
      */
     @Override
     public void updateManufacturingStatusMessage(Message<ProcessEventEnum> message) {

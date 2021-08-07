@@ -1,10 +1,10 @@
-package src.main.java.controller;
+package controller;
 
 import com.google.common.base.Preconditions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
-import src.main.java.service.ManufacturingProcessService;
+import service.ManufacturingProcessService;
 
 /**
  * @author `<a href="mailto:qiang.wang@1020@gmail.com">qiang</a>`

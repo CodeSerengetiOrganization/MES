@@ -1,4 +1,4 @@
-package src.main.java.service;
+package service;
 
 /**
  * @author `<a href="mailto:qiang.wang@1020@gmail.com">qiang</a>`

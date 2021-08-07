@@ -1,9 +1,8 @@
 package service;
 
+import domain.ProductManufacturingStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import service.ManufacturingStatusService;
-import src.main.java.domain.ProductManufacturingStatus;
 
 import java.util.Objects;
 import java.util.Set;

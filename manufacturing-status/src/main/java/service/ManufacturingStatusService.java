@@ -1,8 +1,8 @@
 package service;
 
-import com.mytech.domain.ProductManufacturingStatus;
-import com.mytech.statemachine.ProcessEventEnum;
-import com.mytech.statemachine.ProcessStateEnum;
+import domain.ProcessEventEnum;
+import domain.ProcessStateEnum;
+import domain.ProductManufacturingStatus;
 import org.springframework.messaging.Message;
 
 import java.util.Map;
