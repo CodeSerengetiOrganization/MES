@@ -1,0 +1,140 @@
+spring:
+  datasource:
+    username: linemachine
+    password: 1234fast
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/mes_server_db_statemachine?serverTimezone=UTC
+#    hikari:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+#    tomcat:
+#      driver-class-name: com.mysql.cj.jdbc.Driver
+  #    type: com.alibaba.druid.pool.DruidDataSource
+  jpa:
+    hibernate:
+      #url: jdbc:mysql://localhost:3306/mes_server_db?serverTimezone=UTC
+      #driver_class: com.mysql.cj.jdbc.Driver
+      #username: linemachine
+      #password: 1234fast
+      hbm2ddl.auto: update
+      dialect: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    autoconfigure:
+      exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  profiles:
+    include: db-config
+
+
+
+
+#--------------version4.0 logging configuration below,config different environment such as dev and production--------
+#spring:
+
+Spring:
+  profiles:
+    active: production
+#  config:
+#    activate:
+#      on-profile: dev
+  logging:
+    level:
+      root: info
+    config: classpath:logback-${spring.profiles.active}-spring.xml
+
+---
+
+spring:
+  profiles: dev
+  port: 8080
+  logging:
+    level:
+      root: info
+---
+spring:
+  config:
+    activate:
+      on-profile: production # it is to replace the "profiles: production", which is deprecated
+    port: 8080
+  server:
+  email: dev@mycompany.com
+#  cluster:
+#    - ip: 127.0.0.1
+#      path: /dev1
+#    - ip: 127.0.0.2
+#      path: /dev2
+#    - ip: 127.0.0.3
+#      path: /dev3
+
+
+#--------------version4.0 logging configuration above----------------
+    #--------------version1.0 logging configuration below----------------
+    #logging:
+    #  level:
+    #    org.springframework.security:
+    #      - debug
+    #      - info
+    #    org.springframework.web: debug
+    ##    org.hibernate.SQL: debug
+    ##    org.hibernate.engine.QueryParameters: debug
+    ##    org.hibernate.engine.query.HQLQueryPlan: debug
+    ##    org.hibernate.type.descriptor.sql.BasicBinder: trace
+  ##    com.stationsetupmanagement.controller: info
+#--------------version1.0 logging configuration above----------------
+
+#--------------version2.0 logging configuration below,with two different environment:dev and production----------------
+#  profiles.active: production
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: dev
+#logging:
+#  pattern:
+#    console: "%d %-5level %logger : %msg%n"
+#    file: "%d %-5level [%thread] %logger : %msg%n"
+#  level:
+#      org.springframework.security:
+#        - debug
+#        - info
+#      org.springframework.web: debug
+#      org.hibernate.SQL: debug
+#      org.hibernate.engine.QueryParameters: debug
+#      org.hibernate.engine.query.HQLQueryPlan: debug
+#      org.hibernate.type.descriptor.sql.BasicBinder: trace
+#      com.stationsetupmanagement.controller: debug
+#  file:
+#    name: logs/dev_app.log
+#---
+#spring:
+#  config:
+#    activate:
+#      on-profile: production
+#logging:
+#  pattern:
+#    file: "%d %-5level [%thread] %logger{0} : %msg%n"
+#  level:
+#    org.springframework.security:
+#      - debug
+#      - info
+#    org.springframework.web: debug
+#    org.hibernate.SQL: debug
+#    org.hibernate.engine.QueryParameters: debug
+#    org.hibernate.engine.query.HQLQueryPlan: debug
+#    org.hibernate.type.descriptor.sql.BasicBinder: trace
+#    com.stationsetupmanagement.controller: info
+#  file:
+#    name: logs/production_app.log
+#--------------version2.0 logging configuration above----------------
+
+#--------------version3.0 logging configuration below,with separated xml local configuration files for fine configurations--------
+
+#  logging:
+#    level:
+#      root: info
+#    config: classpath:logback-spring-notuse.xml
+
+
+
+
+
+#--------------version3.0 logging configuration above----------------
