@@ -29,9 +29,13 @@ public class ProductionController {
     public ProductionResult save(@RequestBody @Valid ProductionResultInputDTO inputDTO){
         Preconditions.checkNotNull(inputDTO,"inputDTO is null");
         ProductionResult result = ProductionResultUtils.convertToProductionResult(inputDTO);
+        ProductionResult newResult=addOrderName(result);
         return service.save(result);
     }//save
 
-
+    private ProductionResult addOrderName(ProductionResult productionResult){
+        productionResult.setOrderNumber("controller added order number");
+        return productionResult;
+    }//addOrderName
 
 }//ProductionController
