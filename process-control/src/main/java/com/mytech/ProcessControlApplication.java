@@ -11,10 +11,10 @@ import org.springframework.context.annotation.Configuration;
  * @date 2021-08-08
  * @description :
  */
-//@SpringBootApplication
+@SpringBootApplication
 @Configuration
-@EnableAutoConfiguration
-@ComponentScan
+//@EnableAutoConfiguration
+//@ComponentScan
 public class ProcessControlApplication {
 
     public static void main(String[] args) {
