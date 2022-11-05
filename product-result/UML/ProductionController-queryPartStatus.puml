@@ -1,0 +1,17 @@
+@startuml
+actor ProductionController
+participant ProductionSerivce
+participant ManufacturingStatusService
+participant ManufacturingStatusRepository
+database Database
+
+ProductionController->ProductionSerivce:queryPartStatus
+ProductionSerivce->ManufacturingStatusService: is barcode validToProcess?
+ManufacturingStatusService->ManufacturingStatusRepository:find status of this barcode
+ManufacturingStatusRepository->Database:findByBarcode
+Database->ManufacturingStatusRepository:product status
+ManufacturingStatusRepository->ManufacturingStatusService:product status
+ManufacturingStatusService->ProductionSerivce:product status
+ProductionSerivce->ProductionSerivce:check currentStationToPreviousValidStatusMapping
+ProductionSerivce->ProductionController:return value
+@enduml

@@ -1,0 +1,38 @@
+
+@startuml
+/'
+Alice -> Bob: Authentication Request
+Bob --> Alice: Authentication Response
+
+Alice -> Bob: Another authentication Request
+Alice <-- Bob: another authentication Response
+'/
+@enduml
+
+@startuml
+actor FrontEnd
+control Controller
+participant DomainService
+participant statusService
+participant StateMachine
+participant productService
+participant Repository
+database Database
+
+FrontEnd->Controller:coating station;COAT_PASS
+Controller->DomainService:updateStatus&saveResult
+DomainService->statusService:updateStatus
+statusService->StateMachine:updateStatus
+StateMachine->Database:get product status
+Database->StateMachine:product status
+StateMachine->statusService:restored statemachine\n and update finishded
+statusService->DomainService:updated product status finishded
+DomainService->productService:save product saveResult
+productService->Repository:save product saveResult
+Repository->Database:save product result
+Database->Repository:result saved
+Repository->productService:result saved
+productService->DomainService:result saved
+DomainService->Controller:status updated&result saved
+Controller->FrontEnd:done
+@enduml
