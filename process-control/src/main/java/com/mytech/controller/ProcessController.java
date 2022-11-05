@@ -36,23 +36,9 @@ public class ProcessController {
     }//queryPartStatus
 
     /**
-     * This controller receive manufacturing result,then do two things:1. update manufacturing
-     * status;2. save manufacturing result.
-     * @param msg
-     * @return
+     * This method receive StateInputDTO object, extract barcode and event, then call service layer to trigger state machine to update product state
+     * @param inputDTO StateInputDTO object
      */
-    @PutMapping("/production/v1/processManufacturingResult")
-    public Boolean processManufacturingResult(@RequestBody Map<String,String> msg){
-        System.out.println("From testController, Map msg:"+msg.toString());
-        String barcode=msg.get("barcode");
-        String newEvent=msg.get("event");
-        Boolean aBoolean = service.processManufacturingResult(barcode, newEvent);
-        return aBoolean;
-/*        manufacturingService.updateManufacturingStatus(msg);
-        Message<ProcessEventEnum> message = MessageBuilder.withPayload(ProcessEventEnum.valueOf(msg.get("event"))).setHeader("barcode", msg.get("barcode")).build();
-        manufacturingService.updateManufacturingStatusMessage(message);*/
-    }//updateManufacturingStatusj
-
     @PutMapping("/production/v1/productstate")
     public void processProductState(@RequestBody StateInputDTO inputDTO){
         ProcessEventEnum event = inputDTO.getEvent();
@@ -74,13 +60,32 @@ public class ProcessController {
     }
 
     /**
+     * This controller receive manufacturing result,then do two things:1. update manufacturing
+     * status;2. save manufacturing result.
+     * This method is deprecated as using Map as input parameter is not a good idea, inputDTO is better
+     * @param msg a map that contains barcode and event
+     * @return bool result
+     */
+    @Deprecated
+    @PutMapping("/production/v1/processManufacturingResult")
+    public Boolean processManufacturingResult(@RequestBody Map<String,String> msg){
+        System.out.println("From testController, Map msg:"+msg.toString());
+        String barcode=msg.get("barcode");
+        String newEvent=msg.get("event");
+        Boolean aBoolean = service.processManufacturingResult(barcode, newEvent);
+        return aBoolean;
+    }//updateManufacturingStatusj
+
+
+
+/*    *//**
      * This is a simple test method to see if the controller could parse a ProcessStateEnum object from JSON string
      * @param inputDTO
-     */
+     *//*
     @PutMapping("/production/v1/getInputDtoWithEnum")
     public void getInputDtoWithEnum(@RequestBody StateInputDTO inputDTO){
         ProcessEventEnum event = inputDTO.getEvent();
         System.out.println("event Enum:"+event);
         System.out.println("inputDTO:"+inputDTO.toString());
-    }
+    }*/
 }//class
